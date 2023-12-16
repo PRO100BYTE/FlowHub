@@ -1,0 +1,37 @@
+version: '3.5'
+# 6100 - main service
+# 6101 - users_db
+# 6102 - admin_db
+services:
+  db_users:
+    container_name: db_users
+    ports:
+      - "6101:6101"
+    expose:
+      - "6101"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+    image: postgres:alpine3.18
+    command:
+      - "postgres"
+      - "-c"
+      - "port=6101"
+  db_admin:
+    container_name: db_admin
+    ports:
+      - "6102:6102"
+    expose:
+      - "6102"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+    image: postgres:alpine3.18
+    command:
+      - "postgres"
+      - "-c"
+      - "port=6102"
