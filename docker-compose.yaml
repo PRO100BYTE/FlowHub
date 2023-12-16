@@ -19,19 +19,19 @@ services:
       - "postgres"
       - "-c"
       - "port=6101"
-  db_admin:
-    container_name: db_admin
-    ports:
-      - "6102:6102"
-    expose:
-      - "6102"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_USER=admin
-    image: postgres:alpine3.18
-    command:
-      - "postgres"
-      - "-c"
-      - "port=6102"
+#  db_admin:
+#    container_name: db_admin
+#    ports:
+#      - "6102:6102"
+#    expose:
+#      - "6102"
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data/
+#    environment:
+#      - POSTGRES_PASSWORD=root
+#      - POSTGRES_USER=admin
+#    image: postgres:alpine3.18
+#    command:
+#      - "postgres"
+#      - "-c"
+#      - "port=6102"

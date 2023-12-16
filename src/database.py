@@ -1,8 +1,11 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from config import UsersDataBaseURL, AdminDataBaseURL
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from config import UsersDataBaseURL
+from sqlalchemy.orm import DeclarativeBase
 
-users_engine = create_async_engine(UsersDataBaseURL())
-admin_engine = create_async_engine(AdminDataBaseURL())
+users_engine = create_async_engine(url=UsersDataBaseURL())
 
-users_session = async_sessionmaker(users_engine)
-admin_session = async_sessionmaker(admin_engine)
+users_session = async_sessionmaker(bind=users_engine, class_=AsyncSession)
+
+
+class Base(DeclarativeBase):
+    pass
